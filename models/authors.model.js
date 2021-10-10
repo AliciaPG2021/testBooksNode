@@ -36,6 +36,21 @@ const createAuthor = ({ first_name, last_name }) => {
     });
 }
 
+//Modificar autores
+
+const updateAuthor = (pAuthorId, { first_name, last_name }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update authors set first_name = ?, last_name = ? where id = ?',
+
+            [first_name, last_name, pAuthorId],
+            (err, result) => {
+
+                if (err) reject(err);
+                resolve(result);
+            });
+    });
+}
 
 
-module.exports = { getAll, getAuthorById, createAuthor }
+module.exports = { getAll, getAuthorById, createAuthor, updateAuthor }

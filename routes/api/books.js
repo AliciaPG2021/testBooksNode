@@ -1,4 +1,4 @@
-const { getAllBooks, getBookById, createBook } = require('../../models/books.model');
+const { getAllBooks, getBookById, createBook, updateBoks, updateBook } = require('../../models/books.model');
 
 const router = require('express').Router();
 
@@ -36,6 +36,19 @@ router.post('/', (req, res) => {
         .catch(error => {
             res.json({ error: 'error al crear el libro' });
         })
+
+
+});
+
+// //PUT http://localhost:3000/api/books/1
+
+router.put('/:bookId', async (req, res) => {
+    try {
+        const result = await updateBook(req.params.bookId, req.body);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+    }
 
 
 });
