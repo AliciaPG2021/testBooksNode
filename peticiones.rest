@@ -35,3 +35,13 @@ Content-Type: application/json
     "ISBN": "78-8987",
     "fk_author": 2
 }
+
+###
+PUT http://localhost:3000/api/books/11
+Content-Type: application/json
+
+{
+    "name": "cambio para prueba",
+    "ISBN": "78-8987 cambio",
+    "fk_author": 3
+}

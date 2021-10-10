@@ -36,6 +36,22 @@ const createBook = ({ name, ISBN, fk_author }) => {
     });
 }
 
+//Modificar libros
+
+const updateBook = (pBookId, { name, ISBN, fk_author }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update books set name = ?, ISBN = ?, fk_author = ? where id = ?',
+
+            [name, ISBN, fk_author, pBookId],
+            (err, result) => {
+
+                if (err) reject(err);
+                resolve(result);
+            });
+    });
+}
 
 
-module.exports = { getAllBooks, getBookById, createBook }
+
+module.exports = { getAllBooks, getBookById, createBook, updateBook }
