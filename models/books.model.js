@@ -5,7 +5,7 @@
 
 const getAllBooks = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from books', (err, rows) => {
+        db.query('select * from books b, authors a where a.id = b.fk_author', (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
@@ -16,7 +16,7 @@ const getAllBooks = () => {
 //Todos los libros por ID
 const getBookById = (pBookId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from books where id = ?', [pBookId], (err, rows) => {
+        db.query('select * from books b, authors a where b.id = ? and a.id = b.fk_author', [pBookId], (err, rows) => {
             if (err) reject(err);
             // Rows puede tener cero valores si el id no existe
             // rows tendrá un valor si el ID existe
